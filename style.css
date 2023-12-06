@@ -150,6 +150,6 @@ footer > a {
 	/* margin-bottom: 20px; */
 }
 
-.card:nth-child(n + 1) {
+.card > :nth-child(n + 2) {
 	font-size: 1.8rem;
 }
