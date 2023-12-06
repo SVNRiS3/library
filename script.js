@@ -56,7 +56,7 @@ const mainContent = document.querySelector(".main");
 for (book of myLibrary) {
 	mainContent.appendChild(book.createElement());
 }
-
+//Add "pages" word to book cards
 const pages = document.querySelectorAll(".pages");
 pages.forEach((page) => (page.textContent += " pages"));
 
@@ -68,18 +68,21 @@ const readLabels = document.querySelectorAll(".fieldset label");
 const pagesField = document.querySelector("#pages");
 const searchBox = document.querySelector("input[type='search'");
 
+//open dialog box after clicking "Add book" button and reset it
 addBookButton.addEventListener("click", () => {
 	readLabels.forEach((label) => label.classList.remove("active"));
 	addBookForm.reset();
 	dialog.showModal();
 });
 
+//Close dialog without adding a book
 cancelDialog.addEventListener("click", (event) => {
 	event.preventDefault();
 	dialog.close();
 	addBookButton.focus();
 });
 
+//Implement working read buttons
 readLabels.forEach((label) => {
 	label.addEventListener("click", (event) => {
 		readLabels.forEach((label) => label.classList.remove("active"));
@@ -87,10 +90,12 @@ readLabels.forEach((label) => {
 	});
 });
 
+//Limit pages field to numbers only
 pagesField.addEventListener("input", (event) => {
 	event.target.value = event.target.value.replace(/\D/g, "");
 });
 
+//Implement search by title or author feature
 searchBox.addEventListener("input", (event) => {
 	let searchQuery = "" + event.target.value.toLowerCase();
 	mainContent.childNodes.forEach((card) => {
