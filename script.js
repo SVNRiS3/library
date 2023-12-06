@@ -29,7 +29,7 @@ Book.prototype.createElement = function () {
 function addBookToLibrary(title, author, pages, read) {
 	const newBook = new Book(title, author, pages, read);
 	myLibrary.push(newBook);
-	return myLibrary;
+	return newBook;
 }
 
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "295", false);
@@ -56,6 +56,7 @@ const mainContent = document.querySelector(".main");
 for (book of myLibrary) {
 	mainContent.appendChild(book.createElement());
 }
+
 //Add "pages" word to book cards
 const pages = document.querySelectorAll(".pages");
 pages.forEach((page) => (page.textContent += " pages"));
@@ -115,4 +116,18 @@ searchBox.addEventListener("input", (event) => {
 			card.classList.add("hidden");
 		}
 	});
+});
+
+function findValue(objectToSearch, queryToSearch) {
+	return objectToSearch.querySelector(queryToSearch).value;
+}
+
+addBookForm.addEventListener("submit", (event) => {
+	const newBook = addBookToLibrary(
+		findValue(addBookForm, "#title"),
+		findValue(addBookForm, "#author"),
+		findValue(addBookForm, "#pages"),
+		+findValue(addBookForm, "[name='readState']:checked")
+	);
+	mainContent.appendChild(newBook.createElement());
 });
