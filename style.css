@@ -158,6 +158,11 @@ footer > a {
 	font-size: 1.8rem;
 }
 
+.card > .book-id {
+	margin-top: auto;
+	text-align: right;
+}
+
 .card-controls {
 	margin: auto 20px 10px auto;
 }

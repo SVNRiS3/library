@@ -1,10 +1,17 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(
+	title,
+	author,
+	pages,
+	read,
+	bookId = new Date().valueOf()
+) {
 	this.title = title;
 	this.author = author;
 	this.pages = pages;
 	this.read = read ? "read" : "not read yet";
+	this["book-id"] = bookId;
 }
 
 Book.prototype.info = function () {
@@ -48,29 +55,31 @@ Book.prototype.createElement = function () {
 	return element;
 };
 
-function addBookToLibrary(title, author, pages, read) {
-	const newBook = new Book(title, author, pages, read);
+function addBookToLibrary(title, author, pages, read, bookId) {
+	const newBook = new Book(title, author, pages, read, bookId);
 	myLibrary.push(newBook);
 	return newBook;
 }
 
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "295", false);
-addBookToLibrary("A Man Called Ove", "Fredrik Backman", "337", true);
-addBookToLibrary("Brave New World", "Aldous Huxley", "268", true);
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "295", false, 1);
+addBookToLibrary("A Man Called Ove", "Fredrik Backman", "337", true, 2);
+addBookToLibrary("Brave New World", "Aldous Huxley", "268", true, 3);
 addBookToLibrary(
 	"The Shadow of the Wind",
 	"Carlos Ruiz Zafón",
 	"487",
-	true
+	true,
+	4
 );
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "295", false);
-addBookToLibrary("A Man Called Ove", "Fredrik Backman", "337", true);
-addBookToLibrary("Brave New World", "Aldous Huxley", "268", true);
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "295", false, 5);
+addBookToLibrary("A Man Called Ove", "Fredrik Backman", "337", true, 6);
+addBookToLibrary("Brave New World", "Aldous Huxley", "268", true, 7);
 addBookToLibrary(
 	"The Shadow of the Wind",
 	"Carlos Ruiz Zafón",
 	"487",
-	true
+	true,
+	8
 );
 
 const mainContent = document.querySelector(".main");
@@ -90,6 +99,7 @@ const addBookForm = document.querySelector("dialog form");
 const readLabels = document.querySelectorAll(".fieldset label");
 const pagesField = document.querySelector("#pages");
 const searchBox = document.querySelector("input[type='search'");
+const cardControls = document.querySelectorAll(".card-controls");
 
 //open dialog box after clicking "Add book" button and reset it
 addBookButton.addEventListener("click", () => {
@@ -152,4 +162,26 @@ addBookForm.addEventListener("submit", (event) => {
 		+findValue(addBookForm, "[name='readState']:checked")
 	);
 	mainContent.appendChild(newBook.createElement());
+});
+
+cardControls.forEach((controls) => {
+	controls.addEventListener("click", (event) => {
+		let controlClicked = event.target.alt
+			? event.target.alt
+			: event.target.childNodes[0].alt;
+		// console.log(event.target.closest(".card"));
+		switch (controlClicked) {
+			case "read":
+				//do sth
+				break;
+			case "edit":
+				//TODO
+				break;
+			case "delete":
+				event.target.closest(".card").remove();
+				//add prototype method to remove book from library
+				//based on div with book-id class
+				break;
+		}
+	});
 });
