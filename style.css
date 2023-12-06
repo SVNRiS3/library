@@ -76,7 +76,6 @@ input[type="search"] {
 }
 
 .sidebar {
-	padding-top: 50px;
 	grid-row: 2 / 4;
 	background-color: var(--side-color);
 	box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
@@ -152,4 +151,18 @@ footer > a {
 
 .card > :nth-child(n + 2) {
 	font-size: 1.8rem;
+}
+
+.main-header,
+.menu-header {
+	font-size: 4rem;
+	font-weight: bold;
+	color: var(--side-color);
+	margin: 20px 20px;
+}
+
+.menu-header {
+	color: var(--bg-color);
+	padding-left: 80px;
+	margin: 20px 0;
 }
