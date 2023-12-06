@@ -1,3 +1,5 @@
+const myLibrary = [];
+
 function Book(title, author, pages, read) {
 	this.title = title;
 	this.author = author;
@@ -10,7 +12,23 @@ function Book(title, author, pages, read) {
 	};
 }
 
-const myLibrary = [];
+function addBookToLibrary() {
+	let title = prompt("Please enter book's title: ");
+	let author = prompt("Please enter book's author: ");
+	let pages = parseInt(prompt("Please enter book's pages: "));
+	let read = null;
+	while (!"yn".includes(read)) {
+		read = prompt("Have you read the book? (y/n)").toLowerCase();
+	}
+	const newBook = new Book(
+		title,
+		author,
+		pages,
+		read === "y" ? true : false
+	);
+	myLibrary.push(newBook);
+	return myLibrary;
+}
 
 const theHobbit = new Book(
 	"The Hobbit",
