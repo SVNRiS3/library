@@ -66,6 +66,7 @@ const cancelDialog = document.querySelector(".cancel-dialog");
 const addBookForm = document.querySelector("dialog form");
 const readLabels = document.querySelectorAll(".fieldset label");
 const pagesField = document.querySelector("#pages");
+const searchBox = document.querySelector("input[type='search'");
 
 addBookButton.addEventListener("click", () => {
 	readLabels.forEach((label) => label.classList.remove("active"));
@@ -88,4 +89,25 @@ readLabels.forEach((label) => {
 
 pagesField.addEventListener("input", (event) => {
 	event.target.value = event.target.value.replace(/\D/g, "");
+});
+
+searchBox.addEventListener("input", (event) => {
+	let searchQuery = "" + event.target.value.toLowerCase();
+	mainContent.childNodes.forEach((card) => {
+		card.classList.remove("hidden");
+		if (
+			!(
+				card
+					.querySelector(".title")
+					.textContent.toLowerCase()
+					.includes(searchQuery) ||
+				card
+					.querySelector(".author")
+					.textContent.toLowerCase()
+					.includes(searchQuery)
+			)
+		) {
+			card.classList.add("hidden");
+		}
+	});
 });

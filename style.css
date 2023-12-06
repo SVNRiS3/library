@@ -112,7 +112,7 @@ footer > a {
 
 .main {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	gap: 32px;
 	margin: 32px 20px;
 }
@@ -248,4 +248,8 @@ menu button {
 	font-weight: bold;
 	cursor: pointer;
 	height: 3rem;
+}
+
+.hidden {
+	display: none;
 }
