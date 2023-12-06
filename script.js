@@ -12,29 +12,18 @@ function Book(title, author, pages, read) {
 	};
 }
 
-function addBookToLibrary() {
-	let title = prompt("Please enter book's title: ");
-	let author = prompt("Please enter book's author: ");
-	let pages = parseInt(prompt("Please enter book's pages: "));
-	let read = null;
-	while (!"yn".includes(read)) {
-		read = prompt("Have you read the book? (y/n)").toLowerCase();
-	}
-	const newBook = new Book(
-		title,
-		author,
-		pages,
-		read === "y" ? true : false
-	);
+function addBookToLibrary(title, author, pages, read) {
+	const newBook = new Book(title, author, pages, read);
 	myLibrary.push(newBook);
 	return myLibrary;
 }
 
-const theHobbit = new Book(
-	"The Hobbit",
-	"J.R.R. Tolkien",
-	"295",
-	false
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "295", false);
+addBookToLibrary("A Man Called Ove", "Fredrik Backman", "337", true);
+addBookToLibrary("Brave New World", "Aldous Huxley", "268", true);
+addBookToLibrary(
+	"The Shadow of the Wind",
+	"Carlos Ruiz Zafón",
+	"487",
+	true
 );
-
-console.log(theHobbit.info());
