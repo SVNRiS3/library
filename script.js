@@ -11,6 +11,21 @@ Book.prototype.info = function () {
 	return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
 };
 
+Book.prototype.createElement = function () {
+	const element = document.createElement("div");
+	element.classList.add("card");
+
+	for (property in this) {
+		if (typeof this[property] === "function") continue;
+
+		let propertyElement = document.createElement("div");
+		propertyElement.classList.add(property);
+		propertyElement.textContent = this[property];
+		element.appendChild(propertyElement);
+	}
+	return element;
+};
+
 function addBookToLibrary(title, author, pages, read) {
 	const newBook = new Book(title, author, pages, read);
 	myLibrary.push(newBook);
@@ -28,3 +43,7 @@ addBookToLibrary(
 );
 
 const mainContent = document.querySelector(".main");
+
+for (book of myLibrary) {
+	mainContent.appendChild(book.createElement());
+}
