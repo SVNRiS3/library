@@ -59,3 +59,33 @@ for (book of myLibrary) {
 
 const pages = document.querySelectorAll(".pages");
 pages.forEach((page) => (page.textContent += " pages"));
+
+const dialog = document.querySelector(".dialog");
+const addBookButton = document.querySelector(".add-book");
+const cancelDialog = document.querySelector(".cancel-dialog");
+const addBookForm = document.querySelector("dialog form");
+const readLabels = document.querySelectorAll(".fieldset label");
+const pagesField = document.querySelector("#pages");
+
+addBookButton.addEventListener("click", () => {
+	readLabels.forEach((label) => label.classList.remove("active"));
+	addBookForm.reset();
+	dialog.showModal();
+});
+
+cancelDialog.addEventListener("click", (event) => {
+	event.preventDefault();
+	dialog.close();
+	addBookButton.focus();
+});
+
+readLabels.forEach((label) => {
+	label.addEventListener("click", (event) => {
+		readLabels.forEach((label) => label.classList.remove("active"));
+		event.target.classList.add("active");
+	});
+});
+
+pagesField.addEventListener("input", (event) => {
+	event.target.value = event.target.value.replace(/\D/g, "");
+});
