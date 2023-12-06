@@ -118,6 +118,9 @@ footer > a {
 }
 
 .card {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 	position: relative;
 	border-radius: 0 10px 10px 0;
 	height: 300px;
@@ -153,6 +156,30 @@ footer > a {
 
 .card > :nth-child(n + 2) {
 	font-size: 1.8rem;
+}
+
+.card-controls {
+	margin: auto 20px 10px auto;
+}
+
+.card-controls > button {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+	background-color: var(--book-color);
+	border: none;
+	cursor: pointer;
+	border-radius: 32px;
+	padding: 5px;
+}
+
+.card-controls img {
+	filter: brightness(0) saturate(100%) invert(11%) sepia(46%)
+		saturate(1936%) hue-rotate(349deg) brightness(88%) contrast(90%);
+}
+
+.card-controls > button:hover {
+	background-color: var(--side-color);
 }
 
 .main-header,

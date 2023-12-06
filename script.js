@@ -11,6 +11,25 @@ Book.prototype.info = function () {
 	return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
 };
 
+function createCardControls() {
+	const controlsImgs = [
+		["img/read.svg", "read"],
+		["img/edit.svg", "edit"],
+		["img/delete.svg", "delete"],
+	];
+	const controlsElement = document.createElement("div");
+	controlsElement.classList.add("card-controls");
+	for (imgWAlt of controlsImgs) {
+		const controlButton = document.createElement("button");
+		const controlImg = document.createElement("img");
+		controlImg.src = imgWAlt[0];
+		controlImg.alt = imgWAlt[1];
+		controlButton.appendChild(controlImg);
+		controlsElement.appendChild(controlButton);
+	}
+	return controlsElement;
+}
+
 Book.prototype.createElement = function () {
 	const element = document.createElement("div");
 	element.classList.add("card");
@@ -23,6 +42,9 @@ Book.prototype.createElement = function () {
 		propertyElement.textContent = this[property];
 		element.appendChild(propertyElement);
 	}
+
+	element.appendChild(createCardControls());
+
 	return element;
 };
 
