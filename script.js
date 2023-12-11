@@ -1,17 +1,10 @@
 const myLibrary = [];
 
-function Book(
-	title,
-	author,
-	pages,
-	read,
-	bookId = new Date().valueOf()
-) {
+function Book(title, author, pages, read) {
 	this.title = title;
 	this.author = author;
 	this.pages = pages;
 	this.read = read ? "read" : "not read yet";
-	this["book-id"] = bookId;
 }
 
 Book.prototype.info = function () {
@@ -36,10 +29,11 @@ function createCardControls() {
 	}
 	return controlsElement;
 }
-
-Book.prototype.createElement = function () {
+//Create book card from object
+Book.prototype.createElement = function (bookNr) {
 	const element = document.createElement("div");
 	element.classList.add("card");
+	element.setAttribute("data-id", bookNr);
 
 	for (property in this) {
 		if (typeof this[property] === "function") continue;
@@ -55,21 +49,20 @@ Book.prototype.createElement = function () {
 	return element;
 };
 
-function addBookToLibrary(title, author, pages, read, bookId) {
-	const newBook = new Book(title, author, pages, read, bookId);
+function addBookToLibrary(title, author, pages, read) {
+	const newBook = new Book(title, author, pages, read);
 	myLibrary.push(newBook);
 	return newBook;
 }
-
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "295", false, 1);
-addBookToLibrary("A Man Called Ove", "Fredrik Backman", "337", true, 2);
-addBookToLibrary("Brave New World", "Aldous Huxley", "268", true, 3);
+//Sample books
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "295", false);
+addBookToLibrary("A Man Called Ove", "Fredrik Backman", "337", true);
+addBookToLibrary("Brave New World", "Aldous Huxley", "268", true);
 addBookToLibrary(
 	"The Shadow of the Wind",
 	"Carlos Ruiz Zafón",
 	"487",
-	true,
-	4
+	true
 );
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "295", false, 5);
 addBookToLibrary("A Man Called Ove", "Fredrik Backman", "337", true, 6);
@@ -81,11 +74,12 @@ addBookToLibrary(
 	true,
 	8
 );
-
+//Add book cards to the webpage
 const mainContent = document.querySelector(".main");
 
+let bookNr = 0;
 for (book of myLibrary) {
-	mainContent.appendChild(book.createElement());
+	mainContent.appendChild(book.createElement(bookNr++));
 }
 
 //Add "pages" word to book cards
@@ -164,11 +158,12 @@ addBookForm.addEventListener("submit", (event) => {
 	mainContent.appendChild(newBook.createElement());
 });
 
-cardControls.forEach((controls) => {
-	controls.addEventListener("click", (event) => {
+cardControls.forEach((control) => {
+	control.addEventListener("click", (event) => {
 		let controlClicked = event.target.alt
 			? event.target.alt
 			: event.target.childNodes[0].alt;
+		let bookId = control.parentElement.getAttribute("data-id");
 		// console.log(event.target.closest(".card"));
 		switch (controlClicked) {
 			case "read":
@@ -178,9 +173,10 @@ cardControls.forEach((controls) => {
 				//TODO
 				break;
 			case "delete":
-				event.target.closest(".card").remove();
-				//add prototype method to remove book from library
-				//based on div with book-id class
+				//using delete instead of splice to keep the book ids' on the
+				//page and in the array the same
+				delete myLibrary[bookId];
+				control.parentElement.remove();
 				break;
 		}
 	});
