@@ -167,7 +167,15 @@ cardControls.forEach((control) => {
 		// console.log(event.target.closest(".card"));
 		switch (controlClicked) {
 			case "read":
-				//do sth
+				let book = myLibrary[bookId];
+				let cardReadStatus = control.previousSibling;
+				if (book.read === "read") {
+					book.read = "not read yet";
+					cardReadStatus.textContent = "not read yet";
+				} else {
+					book.read = "read";
+					cardReadStatus.textContent = "read";
+				}
 				break;
 			case "edit":
 				//TODO
