@@ -1,15 +1,35 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.read = read ? "read" : "not read yet";
-}
+class Book {
+	constructor(title, author, pages, read) {
+		this.title = title;
+		this.author = author;
+		this.pages = pages;
+		this.read = read ? "read" : "not read yet";
+	}
 
-Book.prototype.info = function () {
-	return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
-};
+	info = function () {
+		return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
+	};
+	//Create book card from object
+	createElement = function (bookNr) {
+		const element = document.createElement("div");
+		element.classList.add("card");
+		element.setAttribute("data-id", bookNr);
+		for (let property in this) {
+			if (typeof this[property] === "function") continue;
+
+			let propertyElement = document.createElement("div");
+			propertyElement.classList.add(property);
+			propertyElement.textContent = this[property];
+			element.appendChild(propertyElement);
+		}
+
+		element.appendChild(createCardControls());
+
+		return element;
+	};
+}
 
 function createCardControls() {
 	const controlsImgs = [
@@ -29,25 +49,6 @@ function createCardControls() {
 	}
 	return controlsElement;
 }
-//Create book card from object
-Book.prototype.createElement = function (bookNr) {
-	const element = document.createElement("div");
-	element.classList.add("card");
-	element.setAttribute("data-id", bookNr);
-
-	for (property in this) {
-		if (typeof this[property] === "function") continue;
-
-		let propertyElement = document.createElement("div");
-		propertyElement.classList.add(property);
-		propertyElement.textContent = this[property];
-		element.appendChild(propertyElement);
-	}
-
-	element.appendChild(createCardControls());
-
-	return element;
-};
 
 function addBookToLibrary(title, author, pages, read) {
 	const newBook = new Book(title, author, pages, read);
