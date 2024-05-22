@@ -95,17 +95,26 @@ const readLabels = document.querySelectorAll('.fieldset label');
 const pagesField = document.querySelector('#pages');
 const searchBox = document.querySelector("input[type='search'");
 const cardControls = document.querySelectorAll('.card-controls');
-const textFields = addBookForm.querySelectorAll('input[type="text');
+const Fields = addBookForm.querySelectorAll('dialog input');
 
-textFields.forEach((textField) => {
-  textField.addEventListener('input', (event) => {
-    textField.value === ''
-      ? textField.classList.add('empty')
-      : textField.classList.remove('empty');
+function checkIfEmpty(Field) {
+  Field.value == ''
+    ? Field.classList.add('empty')
+    : Field.classList.remove('empty');
+}
+
+Fields.forEach((Field) => {
+  Field.addEventListener('input', (event) => {
+    checkIfEmpty(Field);
   });
 });
 
-addBookForm.addEventListener('submit', (event) => {});
+addBookForm.addEventListener('submit', (event) => {
+  Fields.forEach((Field) => {
+    checkIfEmpty(Field);
+    if (Field.classList.contains('empty')) event.preventDefault();
+  });
+});
 
 //open dialog box after clicking "Add book" button and reset it
 addBookButton.addEventListener('click', () => {

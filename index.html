@@ -1,103 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0" />
-		<title>Library</title>
-		<link rel="stylesheet" href="style.css" />
-		<script src="script.js" defer></script>
-	</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
 
-	<body>
-		<div class="container">
-			<header>
-				<div class="name">My Library</div>
-				<input type="search" />
-				<button class="add-book">Add book</button>
-			</header>
-			<div class="sidebar">
-				<div class="menu-header">MENU</div>
-				<ul>
-					<li><button class="sidebar-action">New</button></li>
-					<li>
-						<button class="sidebar-action">Read</button>
-					</li>
-					<li>
-						<button class="sidebar-action">Unread</button>
-					</li>
-					<li>
-						<button class="sidebar-action">Rated</button>
-					</li>
-					<li>
-						<button class="sidebar-action">Unrated</button>
-					</li>
-				</ul>
-			</div>
-			<div class="main-container">
-				<div class="main-header">BOOKS</div>
-				<div class="main"></div>
-			</div>
-			<footer>
-				Made by <a href="https://github.com/SVNRiS3">Chris</a>
-			</footer>
-		</div>
-		<dialog class="dialog">
-			<form method="dialog">
-				<div class="dialog-header">Enter book details</div>
-				<div>
-					<label for="title">Title: </label
-					><input
-						type="text"
-						name="title"
-						id="title"
-						required />
-				</div>
-				<div>
-					<label for="author">Author: </label
-					><input
-						type="text"
-						name="author"
-						id="author"
-						required />
-				</div>
-				<div>
-					<label for="pages">Pages: </label
-					><input
-						type="tel"
-						name="pages"
-						id="pages"
-						required />
-				</div>
-				<fieldset>
-					<div class="fieldset">
-						<legend>Read:</legend>
-						<div>
-							<input
-								type="radio"
-								id="read"
-								value="1"
-								name="readState"
-								required /><label for="read">Yes</label>
-						</div>
-						<div>
-							<input
-								type="radio"
-								id="not-read"
-								value="0"
-								name="readState"
-								required /><label for="not-read"
-								>No</label
-							>
-						</div>
-					</div>
-				</fieldset>
-				<menu
-					><button class="cancel-dialog">Cancel</button
-					><button class="submit-dialog">Submit</button>
-				</menu>
-			</form>
-		</dialog>
-	</body>
+  <body>
+    <div class="container">
+      <header>
+        <div class="name">My Library</div>
+        <input type="search" />
+        <button class="add-book">Add book</button>
+      </header>
+      <div class="sidebar">
+        <div class="menu-header">MENU</div>
+        <ul>
+          <li><button class="sidebar-action">New</button></li>
+          <li>
+            <button class="sidebar-action">Read</button>
+          </li>
+          <li>
+            <button class="sidebar-action">Unread</button>
+          </li>
+          <li>
+            <button class="sidebar-action">Rated</button>
+          </li>
+          <li>
+            <button class="sidebar-action">Unrated</button>
+          </li>
+        </ul>
+      </div>
+      <div class="main-container">
+        <div class="main-header">BOOKS</div>
+        <div class="main"></div>
+      </div>
+      <footer>
+        Made by <a href="https://github.com/SVNRiS3">Chris</a>
+      </footer>
+    </div>
+    <dialog class="dialog">
+      <form method="dialog" novalidate>
+        <div class="dialog-header">Enter book details</div>
+        <div>
+          <label for="title">Title: </label
+          ><input type="text" name="title" id="title" required />
+        </div>
+        <div>
+          <label for="author">Author: </label
+          ><input type="text" name="author" id="author" required />
+        </div>
+        <div>
+          <label for="pages">Pages: </label
+          ><input type="tel" name="pages" id="pages" required />
+        </div>
+        <fieldset>
+          <div class="fieldset">
+            <legend>Read:</legend>
+            <div>
+              <input
+                type="radio"
+                id="read"
+                value="1"
+                name="readState"
+                required
+              /><label for="read">Yes</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="not-read"
+                value="0"
+                name="readState"
+                required
+              /><label for="not-read">No</label>
+            </div>
+          </div>
+        </fieldset>
+        <menu
+          ><button class="cancel-dialog">Cancel</button
+          ><button class="submit-dialog">Submit</button>
+        </menu>
+      </form>
+    </dialog>
+  </body>
 </html>

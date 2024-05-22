@@ -285,6 +285,7 @@ menu button {
   display: none;
 }
 
-div input[type='text'].empty {
+div input[type].empty,
+div input[type='radio'].empty + label {
   background-color: #ff000061;
 }
