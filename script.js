@@ -96,9 +96,24 @@ const pagesField = document.querySelector('#pages');
 const searchBox = document.querySelector("input[type='search'");
 const cardControls = document.querySelectorAll('.card-controls');
 const Fields = addBookForm.querySelectorAll('dialog input');
+const Radios = addBookForm.querySelectorAll('input[type="radio"]');
+
+function checkIfEmptyRadio() {
+  const isRadioChecked =
+    Radios[0].checked || Radios[1].checked ? true : false;
+  if (isRadioChecked) {
+    Radios.forEach((radio) => radio.classList.remove('empty'));
+  } else {
+    Radios.forEach((radio) => radio.classList.add('empty'));
+  }
+}
+
+Radios.forEach((radio) =>
+  radio.addEventListener('click', checkIfEmptyRadio)
+);
 
 function checkIfEmpty(Field) {
-  Field.value == ''
+  Field.value === ''
     ? Field.classList.add('empty')
     : Field.classList.remove('empty');
 }
@@ -112,6 +127,7 @@ Fields.forEach((Field) => {
 addBookForm.addEventListener('submit', (event) => {
   Fields.forEach((Field) => {
     checkIfEmpty(Field);
+    checkIfEmptyRadio();
     if (Field.classList.contains('empty')) event.preventDefault();
   });
 });
